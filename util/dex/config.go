@@ -75,10 +75,7 @@ func GenerateDexConfigYAML(settings *settings.ArgoCDSettings) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	connectors, ok := dexCfg["connectors"].([]interface{})
-	if !ok {
-		return nil, fmt.Errorf("malformed Dex configuration found")
-	}
+	connectors, _ := dexCfg["connectors"].([]interface{})
 	for i, connectorIf := range connectors {
 		connector, ok := connectorIf.(map[string]interface{})
 		if !ok {
